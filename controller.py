@@ -34,11 +34,7 @@ class Controller(object):
 
 
 class OnOffController(Controller):
-    """An on-off (or bang-bang) hover controller.
-    The simplest type of controller which returns a binary signal of full on
-    (inf) when the error is positive or full off (-inf) when the error is 
-    negative.
-    """
+    
 
     def tick(self, process_var, dt):
         del dt  # Unused.
