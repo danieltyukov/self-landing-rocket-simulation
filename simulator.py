@@ -30,8 +30,8 @@ TARGET_Y = 200  # In pixels.
 
 
 class Rocket(object):
-    
-    """Experiment with data here:"""
+    """A rocket equipped with a bottom thruster."""
+
     def __init__(self, 
                  pos, 
                  height=21.2,
@@ -39,7 +39,7 @@ class Rocket(object):
                  mass=167386., 
                  max_thrust_force=410000.,
                  controller=None):
-       
+        
         self._pos = np.array(pos, dtype=np.float32)
         self._vel = np.array((0., 0.))
         self._mass = mass 

@@ -1,5 +1,3 @@
-"""A rigid body physics simulator."""
-
 import time
 
 import graphics as g
@@ -8,11 +6,7 @@ import numpy as np
 GRAVITY = np.array((0, 9.81))
 
 class RigidBody(object):
-    """An abstract rigid body.
     
-    The rigid body does not assume any shape and is completley described by
-    it's centroid (which is also assumed to be the center of mass).
-    """
 
     # TODO figure out center_of_mass and moment_of_inertia
     # programatically.
@@ -21,14 +15,7 @@ class RigidBody(object):
                  moment_of_inertia, 
                  position=(0, 0), 
                  rotation=0):
-        """Initializes a new RigidBody instance.
         
-        Args:
-            mass: The mass of the rigid body.
-            moment_of_inertia: The moment of inertia of the rigid body.
-            position: The (x, y) centroid of the rigid body.
-            rotation: The rotation of the rigid body.
-        """
         self._m = mass
         self._mi = moment_of_inertia
         self._p = np.array(position, dtype=np.float64) 
@@ -49,22 +36,13 @@ class RigidBody(object):
         return self._r
 
     def apply_force(self, force, contact_point=None):
-        """Applies a contact force to the rigid body.
         
-        Args:
-            force: The force vector to apply to the rigid body.
-            contact_point: The contact point in world coordinates. 
-        """
         cp = contact_point or self._p
         self._f += force
         self._t += np.cross(self._p - cp, force)
 
     def update(self, dt):
-        """Resolves forces acting on body and updates position,  rotation.
         
-        Args:
-            dt: The elapsed time since the last call to update.
-        """
         # Linear component.
         a = GRAVITY
         a += self._f / self._m

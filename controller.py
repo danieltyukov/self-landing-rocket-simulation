@@ -1,20 +1,14 @@
-"""Defines the Controller interface and a few example controllers."""
-
 import abc
 
 import numpy as np
 
 class Controller(object):
-    """Abstract Controller class meant to be subclassed by all controllers."""
 
     def __init__(self, setpoint):
-        """Initializes a new Controller instance.
-        Args: The desired value towards which to drive the process.
-        """
+       
         self._setpoint = setpoint
 
     def _error(self, process_variable):
-        """Returns the error between the process value and the setpoint."""
         return self._setpoint - process_variable
 
     @abc.abstractmethod
@@ -41,23 +35,9 @@ class OnOffController(Controller):
         return np.inf * self._error(process_var)
 
 class PIDController(Controller):
-    """A proportional-integral-derivative (PID) controller.
-    Uses a weighted combination of the error, error integral, and error
-    derivative to control the process.
-    Since we fundementally operate in a discrete regime, the integral is
-    approximated by summing up the error term over each instantaneous timestep.
-    The derivative is similarly approximated by taking the slope between the 
-    errors at the current and previous instantaneous timesteps.
-    """
+    
     def __init__(self, setpoint, kp=1., ki=0., kd=1.):
-        """Initializes a new PIDController instance.
         
-        Args:
-            setpoint: See Controller base class.
-            kp: The proportional weight constant.
-            ki: The integral weight constant.
-            kd: The derivative weight constant.
-        """
         super(PIDController, self).__init__(setpoint=setpoint)
 
         self._kp = kp
