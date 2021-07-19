@@ -1,4 +1,4 @@
-# ✨ Self Landing Rocket Simulation With Python
+# Self Landing Rocket Simulation With Python
 
 ![nasa rocket](https://www.linkpicture.com/q/physics_base.png)
 
